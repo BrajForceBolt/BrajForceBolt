@@ -1,0 +1,63 @@
+﻿@page 
+@using System.Collections
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<h2>Separate page model</h2>
+<p>
+    @Model.Message
+</p>
+
+@if(DateTime.IsLeapYear(DateTime.Now.Year)){
+    @DateTime.Now.Year @: is a leap year.
+}
+else{
+    @DateTime.Now.Year @: is not a leap year.
+}
+
+<hr />
+@{
+    var myarray = new ArrayList(); 
+
+    myarray.Add("brajpal");
+    myarray.Add(" panwar");
+    myarray.Add(3);
+    foreach(var item in myarray)
+    {
+    <div>
+            <text class="text-danger text-uppercase">@item</text>
+    </div>
+    }
+    for(var i=0; i<myarray.Count; i++)
+    {
+    <div>
+            <text class="text-danger text-uppercase">@myarray[i]</text>
+    </div>
+    }
+    var count = myarray.Count;
+    while (count>=1)
+    {
+    <div>
+                <text class="text-danger text-uppercase">@myarray[count-1]</text>
+    </div>
+        count--;
+    }
+    //<button class="btn btn-primary " asp-action="somthing" asp-controller="home" >okay</button>
+    //    <a  class="btn btn-primary " asp-action="somthing" asp-controller="home">okay</a>   
+    <hr />
+    
+    <div class="text-dark"> 
+      @Html.Label("Male")
+    @Html.RadioButtonFor(m => m.StudentGender,"Male")
+      @Html.Label("female")
+    @Html.RadioButtonFor(m => m.StudentGender,"Female")
+    </div>  
+  
+    <hr />
+    @Html.DropDownListFor(m => m.StudentGender, 
+            new SelectList(Enum.GetValues(typeof(Gender))), 
+            "Select Gender")}

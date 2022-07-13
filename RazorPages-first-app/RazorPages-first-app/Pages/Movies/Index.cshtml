@@ -1,0 +1,66 @@
+﻿@page "{searchString?}"
+@model RazorPages_first_app.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+    <a asp-page="Create" class="btn btn-success rounded-pill shadow">Create New</a>
+
+  <form style="float:right">
+    
+        <input type="text" class="rounded-start border-success shadow " placeholder="Search..." asp-for="SearchString" />
+        <input type="submit" class="rounded-end btn-success shadow"/>
+   
+   </form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieModel[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieModel[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieModel[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieModel[0].Price)
+            </th>
+             
+            <th style="width:10%" class="text-center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MovieModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            
+            <td class="btn-group">
+                <a asp-page="./Edit" class="btn btn-primary shadow  bi bi-pencil-fill" asp-route-id="@item.ID"></a>
+                <a asp-page="./Details" class="btn btn-info  shadow bi bi-card-list" asp-route-id="@item.ID"></a>
+                <a asp-page="./Delete" class="btn btn-danger shadow  bi bi-trash" asp-route-id="@item.ID"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
